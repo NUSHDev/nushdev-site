@@ -106,7 +106,8 @@ body {
     font-weight: 700;
     color: var(--accent-pink);
     margin-bottom: 2rem; /* 20px */
-    text-shadow: 0 0 1.5rem rgba(0, 161, 147, 0.4); /* 0 0 15px */
+    /* Updated text-shadow to use Pantone 3272 with opacity */
+    text-shadow: 0 0 1.5rem rgba(0, 136, 136, 0.4); /* RGB for #008888 */
     max-width: 90%; /* prevent overflow on very narrow screens */
 }
 
@@ -175,7 +176,6 @@ body {
 .cards-container {
     padding: 8rem 0; /* 80px 0 */
     background-color: var(--dark-bg);
-    /* Removed overflow: hidden; here to allow scrollbar to show on children */
     /* content-centered will handle text-align for h2 */
 }
 
@@ -188,6 +188,8 @@ body {
     justify-content: center; /* Center the cards grid when there's enough space */
     width: 100%; /* Ensure the wrapper takes full width for scrollability */
     box-sizing: border-box; /* Include padding in width calculation */
+    /* Add scroll-padding for consistent snapping experience */
+    scroll-padding: 0 2rem;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -204,17 +206,9 @@ body {
     display: flex; /* Change to flex for horizontal layout */
     gap: 3rem; /* 30px */
     padding-bottom: 2rem; /* 20px - Space for potential scrollbar */
-    /* Removed width: max-content; here as it was causing overflow issues */
-    /* Let the flex items dictate the width, and flex-wrap will handle breaking */
+    flex-wrap: nowrap; /* !IMPORTANT: Ensure cards never wrap, forcing horizontal scroll */
     justify-content: flex-start; /* Default to start for horizontal scroll */
-}
-@media (min-width: 1024px) { /* Adjust for larger screens to center if all fit */
-    .cards-grid {
-        justify-content: center; /* Center if enough space */
-        flex-wrap: wrap; /* Allow wrapping if items don't fit in one row */
-        max-width: 120rem; /* Constrain max width for centering */
-        margin: 0 auto; /* Center the grid container itself */
-    }
+    /* Removed the @media (min-width: 1024px) block for cards-grid as it forced wrapping */
 }
 
 .card {
@@ -236,7 +230,7 @@ body {
 
 .card:hover {
     transform: translateY(-1rem); /* -10px */
-    box-shadow: 0 1.2rem 2.5rem rgba(0, 230, 230, 0.2), 0 0 3rem rgba(0, 161, 147, 0.4); /* 0 12px 25px, 0 0 30px */
+    box-shadow: 0 1.2rem 2.5rem rgba(0, 230, 230, 0.2), 0 0 3rem rgba(0, 136, 136, 0.4); /* Using RGB for #008888 */
 }
 
 .card h2 {
