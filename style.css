@@ -63,7 +63,7 @@ body {
 .logo {
     font-size: 2.8rem; /* 1.8em -> 2.8rem */
     font-weight: 700;
-    color: var(--accent-pink); /* Vibrant pink */
+    color: var(--pantone-3272); /* Vibrant pink */
     letter-spacing: 0.1rem; /* 1px */
 }
 
@@ -104,7 +104,7 @@ body {
 .headline {
     font-size: 5.5rem; /* 3.5em -> 5.5rem (adjust for impact) */
     font-weight: 700;
-    color: var(--accent-pink);
+    color: var(--pantone-3272);
     margin-bottom: 2rem; /* 20px */
     /* Updated text-shadow to use Pantone 3272 with opacity */
     text-shadow: 0 0 1.5rem rgba(0, 136, 136, 0.4); /* RGB for #008888 */
