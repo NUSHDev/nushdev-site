@@ -180,23 +180,20 @@ body {
 }
 
 .cards-scroll-wrapper {
-    overflow-x: auto; /* Enable horizontal scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    /* Removed overflow-x: auto and scroll-snap-type from here for small screens */
     padding: 0 2rem; /* 20px - Added responsive padding */
-    scroll-snap-type: x mandatory; /* Optional: Snap to cards on scroll */
     display: flex; /* Ensure the wrapper acts as a flex container */
     justify-content: center; /* Center the cards grid when there's enough space */
     width: 100%; /* Ensure the wrapper takes full width for scrollability */
     box-sizing: border-box; /* Include padding in width calculation */
-    /* Add scroll-padding for consistent snapping experience */
-    scroll-padding: 0 2rem;
+    /* Removed scroll-padding as it's not needed without mandatory snapping */
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
+/* Hide scrollbar for Chrome, Safari and Opera (still for general overflow if it occurs) */
 .cards-scroll-wrapper::-webkit-scrollbar {
     display: none;
 }
-/* Hide scrollbar for IE, Edge and Firefox */
+/* Hide scrollbar for IE, Edge and Firefox (still for general overflow if it occurs) */
 .cards-scroll-wrapper {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
@@ -206,9 +203,11 @@ body {
     display: flex; /* Change to flex for horizontal layout */
     gap: 3rem; /* 30px */
     padding-bottom: 2rem; /* 20px - Space for potential scrollbar */
-    flex-wrap: nowrap; /* !IMPORTANT: Ensure cards never wrap, forcing horizontal scroll */
-    justify-content: flex-start; /* Default to start for horizontal scroll */
-    /* Removed the @media (min-width: 1024px) block for cards-grid as it forced wrapping */
+    /* On larger screens, this will remain a row */
+    flex-wrap: wrap; /* !IMPORTANT: Allow cards to wrap to next line */
+    justify-content: center; /* Center cards when they wrap */
+    max-width: 120rem; /* Constrain max width for centering */
+    margin: 0 auto; /* Center the grid container itself */
 }
 
 .card {
@@ -223,7 +222,7 @@ body {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     opacity: 0;
     transform: translateY(4rem); /* 40px */
-    scroll-snap-align: center; /* Optional: Snap to center of card */
+    /* Removed scroll-snap-align as cards will now wrap */
     text-align: left; /* Keep text left-aligned within the card */
     box-sizing: border-box; /* Include padding in width calculation */
 }
@@ -469,13 +468,21 @@ body {
     }
 
     /* Cards in "What We Do" for smaller screens */
+    .cards-scroll-wrapper {
+        overflow-x: hidden; /* Remove horizontal scroll on smaller screens */
+        scroll-snap-type: none; /* Disable snapping when stacking */
+    }
     .cards-grid {
-        justify-content: flex-start; /* Keep left-aligned for horizontal scroll on mobile */
+        flex-direction: column; /* Stack cards in a column */
+        align-items: center; /* Center cards horizontally within the column */
+        justify-content: center; /* Center cards vertically if space allows */
     }
     .card {
-        width: 85vw; /* Adjust card width to be a percentage of viewport width */
-        min-width: 28rem; /* Minimum size for cards to be readable */
+        width: 100%; /* Make cards take full width on small screens */
         max-width: 35rem; /* Max width to prevent them from becoming too large */
+        min-width: 0; /* Allow cards to shrink below 28rem if necessary */
+        margin-left: auto; /* Center individual cards when stacked */
+        margin-right: auto; /* Center individual cards when stacked */
         padding: 2.5rem; /* Reduce padding slightly */
     }
 
