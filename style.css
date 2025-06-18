@@ -21,7 +21,7 @@ body {
     background-color: var(--dark-bg);
     color: var(--soft-white);
     font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden; /* Prevent horizontal scroll from overflow */
+    /* Removed overflow-x: hidden from body to allow more flexible overflow handling per section */
     scroll-behavior: smooth;
     line-height: 1.6;
     font-size: 1.6rem; /* Base font size, effectively 16px */
@@ -175,7 +175,7 @@ body {
 .cards-container {
     padding: 8rem 0; /* 80px 0 */
     background-color: var(--dark-bg);
-    overflow: hidden; /* Hide scrollbar but keep content scrollable for mobile */
+    /* Removed overflow: hidden; here to allow scrollbar to show on children */
     /* content-centered will handle text-align for h2 */
 }
 
@@ -186,6 +186,8 @@ body {
     scroll-snap-type: x mandatory; /* Optional: Snap to cards on scroll */
     display: flex; /* Ensure the wrapper acts as a flex container */
     justify-content: center; /* Center the cards grid when there's enough space */
+    width: 100%; /* Ensure the wrapper takes full width for scrollability */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -202,7 +204,8 @@ body {
     display: flex; /* Change to flex for horizontal layout */
     gap: 3rem; /* 30px */
     padding-bottom: 2rem; /* 20px - Space for potential scrollbar */
-    width: max-content; /* Allow content to dictate width */
+    /* Removed width: max-content; here as it was causing overflow issues */
+    /* Let the flex items dictate the width, and flex-wrap will handle breaking */
     justify-content: flex-start; /* Default to start for horizontal scroll */
 }
 @media (min-width: 1024px) { /* Adjust for larger screens to center if all fit */
@@ -217,6 +220,7 @@ body {
 .card {
     flex-shrink: 0; /* Prevent cards from shrinking */
     width: 35rem; /* 350px - Fixed width for each card */
+    min-width: 30rem; /* Set a more robust min-width to prevent extreme squeezing */
     max-width: 90vw; /* Ensure it's not wider than viewport on small screens */
     background-color: var(--card-bg);
     border-radius: 1.6rem; /* 16px */
@@ -227,11 +231,12 @@ body {
     transform: translateY(4rem); /* 40px */
     scroll-snap-align: center; /* Optional: Snap to center of card */
     text-align: left; /* Keep text left-aligned within the card */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .card:hover {
     transform: translateY(-1rem); /* -10px */
-    box-shadow: 0 1.2rem 2.5rem rgba(0, 230, 230, 0.2), 0 0 3rem rgba (0, 161, 147, 0.4); /* 0 12px 25px, 0 0 30px */
+    box-shadow: 0 1.2rem 2.5rem rgba(0, 230, 230, 0.2), 0 0 3rem rgba(0, 161, 147, 0.4); /* 0 12px 25px, 0 0 30px */
 }
 
 .card h2 {
