@@ -11,49 +11,66 @@
     --dark-gray-text: #b0b0b0;
 }
 
+html {
+    /* Ensures 1rem is 10px on typical 16px root font size for easier calc */
+    font-size: 62.5%; /* 1rem = 10px */
+}
+
 body {
     margin: 0;
     background-color: var(--dark-bg);
     color: var(--soft-white);
     font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll from overflow */
     scroll-behavior: smooth;
     line-height: 1.6;
+    font-size: 1.6rem; /* Base font size, effectively 16px */
 }
 
 /* Helper class for centering content within a section */
-.content-centered > .section-title,
-.content-centered > p,
-.content-centered > div {
+/* This ensures direct children of a content-centered section are centered */
+.content-centered > * {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
+/* Exception: flex/grid containers inside content-centered might need specific centering logic */
+.content-centered .projects-container,
+.content-centered .team-container,
+.content-centered .about-content {
+    text-align: left; /* Reset text alignment for container content */
+}
+/* Ensure elements within these containers are still centered if they are inline or inline-block */
+.content-centered .projects-container > *,
+.content-centered .team-container > * {
+    text-align: initial; /* Or left if that's the desired inner content alignment */
+}
+
 
 /* --- Navbar --- */
 .navbar {
     background: rgba(17, 17, 17, 0.95); /* Semi-transparent background */
-    padding: 15px 40px;
+    padding: 1.5rem 4rem; /* 15px 40px */
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.5); /* 0 2px 10px */
 }
 
 .logo {
-    font-size: 1.8em;
+    font-size: 2.8rem; /* 1.8em -> 2.8rem */
     font-weight: 700;
-    color: var(--pantone-3272); /* Vibrant pink */
-    letter-spacing: 1px;
+    color: var(--accent-pink); /* Vibrant pink */
+    letter-spacing: 0.1rem; /* 1px */
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 3rem; /* 30px */
     margin: 0;
     padding: 0;
 }
@@ -63,73 +80,92 @@ body {
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease, transform 0.3s ease;
+    font-size: 1.6rem; /* Default font size */
 }
 
 .nav-links li a:hover {
     color: var(--accent-cyan); /* Cyan on hover */
-    transform: translateY(-2px);
+    transform: translateY(-0.2rem); /* -2px */
 }
 
 /* --- Hero Section --- */
 .hero-section {
     text-align: center;
-    padding: 120px 20px 80px;
+    padding: 12rem 2rem 8rem; /* 120px 20px 80px */
     background: linear-gradient(135deg, var(--medium-dark-bg), #0a0a0a);
-    border-bottom: 2px solid #222;
+    border-bottom: 0.2rem solid #222; /* 2px */
+    min-height: 70vh; /* Ensure it takes a good portion of viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .headline {
-    font-size: 3.5em;
+    font-size: 5.5rem; /* 3.5em -> 5.5rem (adjust for impact) */
     font-weight: 700;
-    color: var(--pantone-3272);
-    margin-bottom: 20px;
-    text-shadow: 0 0 15px rgba(0,161,147, 0.4);
+    color: var(--accent-pink);
+    margin-bottom: 2rem; /* 20px */
+    text-shadow: 0 0 1.5rem rgba(0, 161, 147, 0.4); /* 0 0 15px */
+    max-width: 90%; /* prevent overflow on very narrow screens */
 }
 
 .hero-subtitle {
-    font-size: 1.4em;
+    font-size: 2.2rem; /* 1.4em -> 2.2rem */
     color: var(--light-gray-text);
-    max-width: 700px;
+    max-width: 70rem; /* 700px */
     margin: 0 auto;
+    padding: 0 1rem; /* Small padding to prevent text touching edges */
 }
 
 /* --- General Section Styling --- */
 .section-title {
     text-align: center;
-    font-size: 2.8em;
+    font-size: 4.4rem; /* 2.8em -> 4.4rem */
     color: var(--soft-white);
-    margin-bottom: 60px;
-    padding-top: 60px;
+    margin-bottom: 6rem; /* 60px */
+    padding-top: 6rem; /* 60px */
     font-weight: 700;
     position: relative;
+    padding-left: 1.5rem; /* Ensure padding on titles themselves */
+    padding-right: 1.5rem;
 }
 
 .section-title::after {
     content: '';
     display: block;
-    width: 80px;
-    height: 4px;
+    width: 8rem; /* 80px */
+    height: 0.4rem; /* 4px */
     background-color: var(--accent-cyan);
-    margin: 15px auto 0;
-    border-radius: 2px;
+    margin: 1.5rem auto 0; /* 15px */
+    border-radius: 0.2rem; /* 2px */
 }
 
 /* --- About Section --- */
 .about-section {
-    padding: 80px 20px;
+    padding: 8rem 2rem; /* 80px 20px */
     background-color: var(--medium-dark-bg);
-    text-align: center; /* Ensures text is centered within the section */
+    /* content-centered will handle text-align */
 }
 
 .about-content {
-    max-width: 800px;
+    max-width: 80rem; /* 800px */
     margin: 0 auto;
-    font-size: 1.1em;
+    font-size: 1.8rem; /* 1.1em -> 1.8rem */
     color: var(--light-gray-text);
+    padding: 0 1.5rem; /* Ensure content has side padding */
+    text-align: justify; /* Justify text for a cleaner look */
+    text-align-last: center; /* Center last line if short */
+}
+@media (max-width: 768px) {
+    .about-content {
+        text-align: left; /* Left align on smaller screens for readability */
+        text-align-last: left;
+    }
 }
 
 .about-content p {
-    margin-bottom: 20px;
+    margin-bottom: 2rem; /* 20px */
 }
 .about-content p strong {
     color: var(--accent-cyan); /* Highlight strong text in about section */
@@ -137,16 +173,16 @@ body {
 
 /* --- Cards Container (What We Do) --- */
 .cards-container {
-    padding: 80px 0; /* No horizontal padding here, handled by wrapper */
+    padding: 8rem 0; /* 80px 0 */
     background-color: var(--dark-bg);
     overflow: hidden; /* Hide scrollbar but keep content scrollable for mobile */
-    text-align: center; /* Center the whole container, including its h2 */
+    /* content-centered will handle text-align for h2 */
 }
 
 .cards-scroll-wrapper {
     overflow-x: auto; /* Enable horizontal scrolling */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    padding: 0 20px; /* Add padding to the wrapper */
+    padding: 0 2rem; /* 20px - Added responsive padding */
     scroll-snap-type: x mandatory; /* Optional: Snap to cards on scroll */
     display: flex; /* Ensure the wrapper acts as a flex container */
     justify-content: center; /* Center the cards grid when there's enough space */
@@ -164,102 +200,111 @@ body {
 
 .cards-grid {
     display: flex; /* Change to flex for horizontal layout */
-    gap: 30px;
-    padding-bottom: 20px; /* Space for potential scrollbar */
+    gap: 3rem; /* 30px */
+    padding-bottom: 2rem; /* 20px - Space for potential scrollbar */
     width: max-content; /* Allow content to dictate width */
-    /* Remove justify-content: center here if you always want left-aligned scroll */
-    /* If you want centering *when content fits*, add: flex-wrap: wrap; justify-content: center; */
+    justify-content: flex-start; /* Default to start for horizontal scroll */
+}
+@media (min-width: 1024px) { /* Adjust for larger screens to center if all fit */
+    .cards-grid {
+        justify-content: center; /* Center if enough space */
+        flex-wrap: wrap; /* Allow wrapping if items don't fit in one row */
+        max-width: 120rem; /* Constrain max width for centering */
+        margin: 0 auto; /* Center the grid container itself */
+    }
 }
 
 .card {
     flex-shrink: 0; /* Prevent cards from shrinking */
-    width: 350px; /* Fixed width for each card */
+    width: 35rem; /* 350px - Fixed width for each card */
+    max-width: 90vw; /* Ensure it's not wider than viewport on small screens */
     background-color: var(--card-bg);
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 1.6rem; /* 16px */
+    padding: 3rem; /* 30px */
+    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.3); /* 0 8px 20px */
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(4rem); /* 40px */
     scroll-snap-align: center; /* Optional: Snap to center of card */
     text-align: left; /* Keep text left-aligned within the card */
 }
 
+.card:hover {
+    transform: translateY(-1rem); /* -10px */
+    box-shadow: 0 1.2rem 2.5rem rgba(0, 230, 230, 0.2), 0 0 3rem rgba (0, 161, 147, 0.4); /* 0 12px 25px, 0 0 30px */
+}
+
 .card h2 {
-    font-size: 2.2em; /* Larger header */
-    margin-bottom: 15px;
+    font-size: 2.2rem; /* 2.2em -> 2.2rem */
+    margin-bottom: 1.5rem; /* 15px */
     color: var(--pantone-3272); /* Pantone 3272 color */
     font-weight: 700;
     display: flex; /* Align icon and text */
     align-items: center;
-    gap: 10px; /* Space between icon and text */
+    gap: 1rem; /* 10px - Space between icon and text */
 }
 .card h2 svg {
     color: var(--pantone-3272);
-    min-width: 40px; /* Ensure icon size doesn't shrink */
-    min-height: 40px;
+    min-width: 4rem; /* 40px - Ensure icon size doesn't shrink */
+    min-height: 4rem; /* 40px */
 }
 
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 25px rgba(0, 230, 230, 0.2), 0 0 30px rgba(230, 0, 122, 0.1);
-}
 
 .card p {
     color: var(--dark-gray-text);
-    font-size: 1.05em; /* Slightly larger body text */
+    font-size: 1.7rem; /* 1.05em -> 1.7rem */
 }
 
 /* --- Projects Section --- */
 .projects-section {
-    padding: 80px 20px;
+    padding: 8rem 2rem; /* 80px 20px */
     background-color: var(--medium-dark-bg);
-    text-align: center; /* Center the whole section, including its h2 */
+    /* content-centered will handle text-align for h2 */
 }
 
 .projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+    /* Auto-fit and minmax ensures responsive grid */
+    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr)); /* minmax(320px, 1fr) -> 28rem */
+    gap: 3rem; /* 30px */
     justify-content: center;
-    max-width: 1200px;
+    max-width: 120rem; /* 1200px */
     margin: 0 auto;
 }
 
 .project-card {
     background: var(--card-bg);
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 1.2rem; /* 12px */
+    padding: 2.5rem; /* 25px */
+    box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.2); /* 0 6px 15px */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(4rem); /* 40px */
     text-align: left; /* Keep text left-aligned within the card */
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(var(--accent-cyan), 0.1);
+    transform: translateY(-0.8rem); /* -8px */
+    box-shadow: 0 1rem 2rem rgba(0, 230, 230, 0.1); /* 0 10px 20px */
 }
 
 .project-card h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+    font-size: 2.4rem; /* 1.5em -> 2.4rem */
+    margin-bottom: 1rem; /* 10px */
     color: var(--pantone-3272); /* Using main color for project titles */
 }
 
 .project-card p {
     color: var(--dark-gray-text);
-    margin-bottom: 15px;
-    font-size: 0.95em;
+    margin-bottom: 1.5rem; /* 15px */
+    font-size: 1.5rem; /* 0.95em -> 1.5rem */
 }
 
 .project-status {
     display: inline-block;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85em;
+    padding: 0.6rem 1.2rem; /* 6px 12px */
+    border-radius: 2rem; /* 20px */
+    font-size: 1.3rem; /* 0.85em -> 1.3rem */
     font-weight: 600;
     color: #fff;
 }
@@ -278,67 +323,68 @@ body {
 
 /* --- Team Section --- */
 .team-section {
-    padding: 80px 20px;
+    padding: 8rem 2rem; /* 80px 20px */
     background-color: var(--dark-bg);
-    text-align: center; /* Center the whole section, including its h2 */
+    /* content-centered will handle text-align for h2 */
 }
 
 .team-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); /* minmax(200px, 1fr) -> 18rem */
+    gap: 3rem; /* 30px */
     justify-content: center;
-    max-width: 1000px;
+    max-width: 100rem; /* 1000px */
     margin: 0 auto;
 }
 
 .team-member {
     background: var(--card-bg);
-    border-radius: 12px;
-    padding: 25px;
+    border-radius: 1.2rem; /* 12px */
+    padding: 2.5rem; /* 25px */
     text-align: center;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.2); /* 0 6px 15px */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(4rem); /* 40px */
 }
 
 .team-member:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(var(--accent-cyan), 0.1);
+    transform: translateY(-0.8rem); /* -8px */
+    box-shadow: 0 1rem 2rem rgba(0, 230, 230, 0.1); /* 0 10px 20px */
 }
 
 .team-member h3 {
-    margin: 0 0 8px;
+    margin: 0 0 0.8rem; /* 8px */
     color: var(--pantone-3272); /* Using main color for team member names */
-    font-size: 1.6em;
+    font-size: 2rem; /* 1.6em -> 2rem */
 }
 
 .team-member p {
     margin: 0;
     color: var(--dark-gray-text);
-    font-size: 0.95em;
+    font-size: 1.5rem; /* 0.95em -> 1.5rem */
 }
 
 /* --- Contact Section --- */
 .contact-section {
-    padding: 80px 20px;
+    padding: 8rem 2rem; /* 80px 20px */
     background-color: var(--medium-dark-bg);
-    text-align: center; /* Center the whole section, including its h2 */
+    /* content-centered will handle text-align for h2 */
 }
 
 .contact-section p {
-    font-size: 1.1em;
+    font-size: 1.8rem; /* 1.1em -> 1.8rem */
     color: var(--light-gray-text);
-    margin-bottom: 25px;
+    margin-bottom: 2.5rem; /* 25px */
+    padding: 0 1.5rem; /* Ensure content has side padding */
 }
 
 .contact-info {
-    margin-top: 30px;
+    margin-top: 3rem; /* 30px */
 }
 
 .contact-info p {
-    margin: 10px 0;
+    margin: 1rem 0; /* 10px */
 }
 
 .contact-info a {
@@ -357,16 +403,16 @@ body {
     background-color: #111;
     color: #888;
     text-align: center;
-    padding: 30px 20px;
-    font-size: 0.9em;
-    border-top: 1px solid #222;
+    padding: 3rem 2rem; /* 30px 20px */
+    font-size: 1.4rem; /* 0.9em -> 1.4rem */
+    border-top: 0.1rem solid #222; /* 1px */
 }
 
 /* --- Fade-in Animation --- */
 /* Base state for elements that will fade in */
 .fade-in {
     opacity: 0;
-    transform: translateY(20px); /* Smaller initial translateY for smoother effect */
+    transform: translateY(2rem); /* 20px -> 2rem */
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
@@ -387,77 +433,90 @@ body {
     color: var(--pantone-3272); /* Set SVG color to main accent */
 }
 
-/* --- Responsive Design --- */
-@media (max-width: 1200px) {
-    /* Ensure horizontal scroll on smaller desktop/large tablet screens too */
-    .cards-grid {
-        justify-content: flex-start; /* Align to start for horizontal scroll */
+/* --- Responsive Design Adjustments --- */
+/* Global adjustments for smaller screens */
+@media (max-width: 76.8em) { /* equivalent to 768px */
+    body {
+        font-size: 1.5rem; /* Slightly smaller base font on smaller screens */
     }
-}
 
-@media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        padding: 15px 20px;
+        padding: 1.5rem 2rem; /* 15px 20px */
     }
 
     .nav-links {
-        margin-top: 15px;
+        margin-top: 1.5rem; /* 15px */
         flex-wrap: wrap;
         justify-content: center;
-        gap: 15px;
+        gap: 1.5rem; /* 15px */
     }
 
     .logo {
-        font-size: 1.6em;
+        font-size: 2.6rem; /* 1.6em -> 2.6rem */
     }
 
     .headline {
-        font-size: 2.5em;
+        font-size: 4rem; /* 2.5em -> 4rem */
     }
 
     .hero-subtitle {
-        font-size: 1.1em;
+        font-size: 1.8rem; /* 1.1em -> 1.8rem */
     }
 
     .section-title {
-        font-size: 2em;
-        margin-bottom: 40px;
+        font-size: 3.2rem; /* 2em -> 3.2rem */
+        margin-bottom: 4rem; /* 40px */
     }
 
+    /* Cards in "What We Do" for smaller screens */
+    .cards-grid {
+        justify-content: flex-start; /* Keep left-aligned for horizontal scroll on mobile */
+    }
     .card {
         width: 85vw; /* Adjust card width to be a percentage of viewport width */
-        max-width: 350px; /* But don't let it get too wide */
+        min-width: 28rem; /* Minimum size for cards to be readable */
+        max-width: 35rem; /* Max width to prevent them from becoming too large */
+        padding: 2.5rem; /* Reduce padding slightly */
     }
 
-    /* Make sure other sections stack */
+    /* Stack project and team members on smaller screens */
     .projects-container, .team-container {
         grid-template-columns: 1fr; /* Single column layout */
     }
 }
 
-@media (max-width: 480px) {
+/* Even smaller screens (e.g., typical phone portrait) */
+@media (max-width: 48em) { /* equivalent to 480px */
+    body {
+        font-size: 1.4rem; /* Further reduction for very small screens */
+    }
+
     .headline {
-        font-size: 2em;
+        font-size: 3.2rem; /* 2em -> 3.2rem */
     }
 
     .hero-subtitle {
-        font-size: 1em;
+        font-size: 1.6rem; /* 1em -> 1.6rem */
     }
 
     .navbar {
-        padding: 10px 15px;
+        padding: 1rem 1.5rem; /* 10px 15px */
     }
 
     .logo {
-        font-size: 1.4em;
+        font-size: 2.4rem; /* 1.4em -> 2.4rem */
     }
 
     .nav-links {
-        gap: 10px;
+        gap: 1rem; /* 10px */
     }
 
     .nav-links li a {
-        font-size: 0.9em;
+        font-size: 1.4rem; /* 0.9em -> 1.4rem */
+    }
+
+    .section-title {
+        font-size: 2.8rem; /* Adjust section title for very small screens */
     }
 }
