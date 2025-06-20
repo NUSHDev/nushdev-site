@@ -186,8 +186,8 @@ body {
 
 /* Individual SVG masks */
 .mask-webpage {
-  -webkit-mask-image: url('assets/webpage.svg');
-  mask-image: url('assets/webpage.svg');
+  -webkit-mask-image: url('assets/webpage2.svg');
+  mask-image: url('assets/webpage2.svg');
 }
 
 .mask-lock {
