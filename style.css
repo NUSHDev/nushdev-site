@@ -211,8 +211,8 @@ body {
 }
 
 .mask-calling {
-  -webkit-mask-image: url('assets/calling.svg');
-  mask-image: url('assets/calling.svg');
+  -webkit-mask-image: url('assets/calling2.svg');
+  mask-image: url('assets/calling2.svg');
 }
 
 /* --- Cards Container (What We Do) --- */
