@@ -170,6 +170,50 @@ body {
 .about-content p strong {
     color: var(--accent-cyan); /* Highlight strong text in about section */
 }
+/* Shared style for all SVG masks */
+.icon-code-card {
+  width: 40px;
+  height: 40px;
+  background-color: #008675; /* Pantone 3272 */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  display: inline-block;
+}
+
+/* Individual SVG masks */
+.mask-webpage {
+  -webkit-mask-image: url('assets/webpage.svg');
+  mask-image: url('assets/webpage.svg');
+}
+
+.mask-lock {
+  -webkit-mask-image: url('assets/lock.svg');
+  mask-image: url('assets/lock.svg');
+}
+
+.mask-whiteiphone {
+  -webkit-mask-image: url('assets/whiteiphone.svg');
+  mask-image: url('assets/whiteiphone.svg');
+}
+
+.mask-opensource {
+  -webkit-mask-image: url('assets/opensource.svg');
+  mask-image: url('assets/opensource.svg');
+}
+
+.mask-server {
+  -webkit-mask-image: url('assets/server.svg');
+  mask-image: url('assets/server.svg');
+}
+
+.mask-calling {
+  -webkit-mask-image: url('assets/calling.svg');
+  mask-image: url('assets/calling.svg');
+}
 
 /* --- Cards Container (What We Do) --- */
 .cards-container {
