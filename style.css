@@ -410,119 +410,112 @@ body {
 /* Base state for elements that will fade in */
 .fade-in {
     opacity: 0;
-    transform: translateY(2rem); /* 20px -> 2rem */
+    transform: translateY(2rem); 
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* Apply delay using custom property */
 .fade-in[style*="--delay"] {
     transition-delay: var(--delay);
 }
 
-/* Active state for elements that have appeared */
 .fade-in.appear {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* SVG Icon Styling for consistency */
 .navbar-logo svg,
 .card h2 svg {
-    color: var(--pantone-3272); /* Set SVG color to main accent */
+    color: var(--pantone-3272);
 }
 
-/* --- Responsive Design Adjustments --- */
-/* Global adjustments for smaller screens */
-@media (max-width: 76.8em) { /* equivalent to 768px */
+@media (max-width: 76.8em) {
     body {
-        font-size: 1.5rem; /* Slightly smaller base font on smaller screens */
+        font-size: 1.5rem;
     }
 
     .navbar {
         flex-direction: column;
-        padding: 1.5rem 2rem; /* 15px 20px */
+        padding: 1.5rem 2rem;
     }
 
     .nav-links {
-        margin-top: 1.5rem; /* 15px */
+        margin-top: 1.5rem; 
         flex-wrap: wrap;
         justify-content: center;
-        gap: 1.5rem; /* 15px */
+        gap: 1.5rem;
     }
 
     .logo {
-        font-size: 2.6rem; /* 1.6em -> 2.6rem */
+        font-size: 2.6rem; 
     }
 
     .headline {
-        font-size: 4rem; /* 2.5em -> 4rem */
+        font-size: 4rem; 
     }
 
     .hero-subtitle {
-        font-size: 1.8rem; /* 1.1em -> 1.8rem */
+        font-size: 1.8rem;
     }
 
     .section-title {
-        font-size: 3.2rem; /* 2em -> 3.2rem */
-        margin-bottom: 4rem; /* 40px */
+        font-size: 3.2rem;
+        margin-bottom: 4rem; 
     }
 
-    /* Cards in "What We Do" for smaller screens */
     .cards-scroll-wrapper {
-        overflow-x: hidden; /* Remove horizontal scroll on smaller screens */
-        scroll-snap-type: none; /* Disable snapping when stacking */
+        overflow-x: hidden;
+        scroll-snap-type: none;
     }
     .cards-grid {
-        flex-direction: column; /* Stack cards in a column */
-        align-items: center; /* Center cards horizontally within the column */
-        justify-content: center; /* Center cards vertically if space allows */
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center; 
     }
     .card {
-        width: 100%; /* Make cards take full width on small screens */
-        max-width: 35rem; /* Max width to prevent them from becoming too large */
-        min-width: 0; /* Allow cards to shrink below 28rem if necessary */
-        margin-left: auto; /* Center individual cards when stacked */
-        margin-right: auto; /* Center individual cards when stacked */
-        padding: 2.5rem; /* Reduce padding slightly */
+        width: 100%; 
+        max-width: 35rem;
+        min-width: 0;
+        margin-left: auto; 
+        margin-right: auto; 
+        padding: 2.5rem;
     }
 
-    /* Stack project and team members on smaller screens */
     .projects-container, .team-container {
-        grid-template-columns: 1fr; /* Single column layout */
+        grid-template-columns: 1fr; 
     }
 }
 
-/* Even smaller screens (e.g., typical phone portrait) */
-@media (max-width: 48em) { /* equivalent to 480px */
+
+@media (max-width: 48em) {
     body {
-        font-size: 1.4rem; /* Further reduction for very small screens */
+        font-size: 1.4rem; 
     }
 
     .headline {
-        font-size: 3.2rem; /* 2em -> 3.2rem */
+        font-size: 3.2rem; 
     }
 
     .hero-subtitle {
-        font-size: 1.6rem; /* 1em -> 1.6rem */
+        font-size: 1.6rem;
     }
 
     .navbar {
-        padding: 1rem 1.5rem; /* 10px 15px */
+        padding: 1rem 1.5rem;
     }
 
     .logo {
-        font-size: 2.4rem; /* 1.4em -> 2.4rem */
+        font-size: 2.4rem; 
     }
 
     .nav-links {
-        gap: 1rem; /* 10px */
+        gap: 1rem; 
     }
 
     .nav-links li a {
-        font-size: 1.4rem; /* 0.9em -> 1.4rem */
+        font-size: 1.4rem; 
     }
 
     .section-title {
-        font-size: 2.8rem; /* Adjust section title for very small screens */
+        font-size: 2.8rem;
     }
 }
