@@ -397,7 +397,7 @@ body {
 .team-member h3 {
     margin: 0 0 0.8rem; /* 8px */
     color: var(--pantone-3272); /* Using main color for team member names */
-    font-size: 2rem; /* 1.6em -> 2rem */
+    font-size: 1.8rem; /* 1.6em -> 2rem */
 }
 
 .team-member p {
