@@ -262,7 +262,7 @@ body {
   border-radius: 1.6rem; /* 16px */
   padding: 3rem; /* 30px */
   box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.3); /* 0 8px 20px */
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: all 0.4s ease;
   opacity: 0;
   transform: translateY(4rem); /* 40px */
   /* Removed scroll-snap-align as cards will now wrap */
