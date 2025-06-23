@@ -154,8 +154,6 @@ body {
 	font-size: 1.8rem; /* 1.1em -> 1.8rem */
 	color: var(--light-gray-text);
 	padding: 0 1.5rem; /* Ensure content has side padding */
-	text-align: justify; /* Justify text for a cleaner look */
-	text-align-last: center; /* Center last line if short */
 }
 @media (max-width: 768px) {
 	.about-content {
@@ -166,6 +164,7 @@ body {
 
 .about-content p {
 	margin-bottom: 2rem; /* 20px */
+	text-align: justify; /* Justify text for a cleaner look */
 }
 .about-content p strong {
 	color: var(--accent-cyan); /* Highlight strong text in about section */
@@ -294,6 +293,8 @@ body {
 .card p {
 	color: var(--dark-gray-text);
 	font-size: 1.7rem; /* 1.05em -> 1.7rem */
+	text-align: justify;
+	hyphens: manual;
 }
 
 /* --- Projects Section --- */
